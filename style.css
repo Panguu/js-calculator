@@ -1,0 +1,90 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(245, 245, 245);
+}
+
+header > h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: x-large;
+  color: rgb(57, 24, 15);
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(244, 232, 209);
+  border-radius: 10px;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+#display {
+  width: 80%;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgb(251, 247, 239);
+  margin-top: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+button {
+  width: 105%;
+  height: 3rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: none;
+  background-color: whitesmoke;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: large;
+  color: rgb(57, 24, 15);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hidden-button {
+  visibility: hidden;
+}
+
+.span-2 {
+  grid-column: span 2;
+  background-color: rgb(101, 49, 34);
+  color: white;
+}
+
+.span-2:hover {
+  background-color: rgb(120, 60, 40);
+  transform: scale(1.03);
+}
+
+.clear {
+  background-color: rgb(213, 155, 74);
+  color: white;
+}
+
+.operations {
+  background-color: rgb(168, 92, 41);
+  color: white;
+}
