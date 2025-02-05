@@ -20,18 +20,25 @@ function divide(a, b) {
 function operate(operator, x, y) {
   let a = parseFloat(x);
   let b = parseFloat(y);
+  let result;
   switch (operator) {
     case "+":
-      return add(a, b);
+      result = add(a, b);
+      break;
     case "-":
-      return subtract(a, b);
+      result = subtract(a, b);
+      break;
     case "*":
-      return multiply(a, b);
+      result = multiply(a, b);
+      break;
     case "/":
-      return divide(a, b);
+      result = divide(a, b);
+      break;
     default:
-      return "Invalid Operator";
+      result = "Invalid Operator";
   }
+  console.log(`Operate: ${a} ${operator} ${b} = ${result}`);
+  return result;
 }
 
 function Display() {
@@ -64,7 +71,7 @@ const operationsBtn = document.querySelectorAll(".operations");
 const numbersBtn = document.querySelectorAll(".number");
 let displayValue = "0";
 let first = null;
-let current = null;
+let currentOperator = null;
 let waiting = false;
 
 numbersBtn.forEach((btn) => {
@@ -88,22 +95,24 @@ operationsBtn.forEach((btn) => {
     if (first == null) {
       first = displayValue;
     } else if (!waiting) {
-      first = operate(current, first, displayValue).toString();
+      console.log("operate");
+      first = operate(currentOperator, first, displayValue).toString();
       displayValue = first;
       Display();
     }
-    current = btn.value;
+    currentOperator = btn.value;
     waiting = true;
   });
 });
 
 function showResult() {
-  if (first && current && !waiting) {
-    let result = operate(current, first, displayValue);
+  if (first && currentOperator && !waiting) {
+    console.log("show result");
+    let result = operate(currentOperator, first, displayValue);
     displayValue = result.toString();
-    waiting = false;
+    waiting = true;
+    currentOperator = null;
     first = result;
-    current = null;
     Display();
   }
 }
@@ -115,7 +124,7 @@ resultBtn.addEventListener("click", () => {
 ac.addEventListener("click", () => {
   deleteAll();
   waiting = false;
-  current = null;
+  currentOperator = null;
   first = null;
 });
 
