@@ -63,21 +63,19 @@ const divBtn = document.querySelector(".div");
 const operationsBtn = document.querySelectorAll(".operations");
 const numbersBtn = document.querySelectorAll(".number");
 let displayValue = "0";
-let first = null; 
-let current = null; 
-let waiting = false; 
-
+let first = null;
+let current = null;
+let waiting = false;
 
 numbersBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     if (waiting) {
       displayValue = btn.value;
       waiting = false;
-
     } else {
-      if(displayValue === "0" ) {
-        displayValue =  btn.value ; 
-      }else{
+      if (displayValue === "0") {
+        displayValue = btn.value;
+      } else {
         displayValue += btn.value;
       }
     }
@@ -89,19 +87,23 @@ operationsBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     if (first == null) {
       first = displayValue;
+    } else if (!waiting) {
+      first = operate(current, first, displayValue).toString();
+      displayValue = first;
+      Display();
     }
     current = btn.value;
-    waiting = true; 
+    waiting = true;
   });
 });
 
 function showResult() {
   if (first && current && !waiting) {
     let result = operate(current, first, displayValue);
-    displayValue = result.toString(); ;
-    waiting = false; 
-    first = result; 
-    current = null; 
+    displayValue = result.toString();
+    waiting = false;
+    first = result;
+    current = null;
     Display();
   }
 }
@@ -112,9 +114,9 @@ resultBtn.addEventListener("click", () => {
 
 ac.addEventListener("click", () => {
   deleteAll();
-  waiting = false; 
-  current = null; 
-  first = null; 
+  waiting = false;
+  current = null;
+  first = null;
 });
 
 del.addEventListener("click", () => {
