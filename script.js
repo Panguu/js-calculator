@@ -21,6 +21,7 @@ function operate(operator, x, y) {
   let a = parseFloat(x);
   let b = parseFloat(y);
   let result;
+  console.log(operator);
   switch (operator) {
     case "+":
       result = add(a, b);
@@ -76,6 +77,9 @@ let waiting = false;
 
 numbersBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
+    if (displayValue.includes(".") && btn.value === ".") {
+      return;
+    }
     if (waiting) {
       displayValue = btn.value;
       waiting = false;
@@ -119,6 +123,7 @@ function showResult() {
 
 resultBtn.addEventListener("click", () => {
   showResult();
+  first = null;
 });
 
 ac.addEventListener("click", () => {
@@ -130,4 +135,31 @@ ac.addEventListener("click", () => {
 
 del.addEventListener("click", () => {
   deleteLast();
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key >= 0 && e.key <= 9) {
+    numbersBtn.forEach((btn) => {
+      if (btn.value == e.key) {
+        btn.click();
+      }
+    });
+  } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+    e.preventDefault();
+    operationsBtn.forEach((btn) => {
+      if (btn.value == e.key) {
+        btn.click();
+      }
+    });
+  }
+  if (e.key == "Enter" || e.key == "=") {
+    e.preventDefault();
+    resultBtn.click();
+  }
+  if (e.key == "Backspace" || e.key == "Delete") {
+    del.click();
+  }
+  if (e.key == "Escape") {
+    deleteAll();
+  }
 });
