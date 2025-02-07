@@ -138,7 +138,7 @@ del.addEventListener("click", () => {
 });
 
 window.addEventListener("keydown", (e) => {
-  if (e.key >= 0 && e.key <= 9) {
+  if ((e.key >= 0 && e.key <= 9) || e.key == ".") {
     numbersBtn.forEach((btn) => {
       if (btn.value == e.key) {
         btn.click();
