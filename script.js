@@ -113,7 +113,11 @@ function showResult() {
   if (first && currentOperator && !waiting) {
     console.log("show result");
     let result = operate(currentOperator, first, displayValue);
-    displayValue = result.toString();
+    if (result % 1 == 0) {
+      displayValue = result.toString();
+    } else {
+      displayValue = result.toFixed(4).toString();
+    }
     waiting = true;
     currentOperator = null;
     first = result;
