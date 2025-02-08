@@ -113,7 +113,9 @@ function showResult() {
   if (first && currentOperator && !waiting) {
     console.log("show result");
     let result = operate(currentOperator, first, displayValue);
-    if (result % 1 == 0) {
+    if (result == "Math Error") {
+      displayValue = "Math Error";
+    } else if (result % 1 == 0) {
       displayValue = result.toString();
     } else {
       displayValue = result.toFixed(4).toString();
