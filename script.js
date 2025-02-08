@@ -100,7 +100,9 @@ operationsBtn.forEach((btn) => {
       first = displayValue;
     } else if (!waiting) {
       console.log("operate");
-      first = operate(currentOperator, first, displayValue).toString();
+      first = operate(currentOperator, first, displayValue)
+        .toFixed(4)
+        .toString();
       displayValue = first;
       Display();
     }
@@ -113,7 +115,7 @@ function showResult() {
   if (first && currentOperator && !waiting) {
     console.log("show result");
     let result = operate(currentOperator, first, displayValue);
-    displayValue = result.toString();
+    displayValue = result.toFixed(4).toString();
     waiting = true;
     currentOperator = null;
     first = result;
